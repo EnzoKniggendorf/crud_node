@@ -1,0 +1,19 @@
+{
+  "name": "crud_node",
+  "version": "1.0.0",
+  "description": "CRUD em Node.js com autentificação em JWT",
+  "license": "ISC",
+  "author": "Enzo Kniggendorf",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql": "^2.18.1"
+  }
+}
