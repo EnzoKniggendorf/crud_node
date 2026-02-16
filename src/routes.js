@@ -1,5 +1,6 @@
-import express from "express";
+import express from 'express';
 import { consulta } from "./conexao.js";
+import { verifica } from "./auth.js";
 
 const rotas = express.Router();
 
@@ -13,21 +14,21 @@ rotas.get("/:id", async (req, res) => {
   res.json(produtoId);
 });
 
-rotas.post("/", async (req, res) => {
+rotas.post("/", verifica, async (req, res) => {
   const { nome, valor, quantidade } = req.body;
   await consulta("INSERT INTO produtos (nome, valor, quantidade) VALUES (?, ?, ?)", [nome, valor, quantidade]);
   res.json({ nome, valor, quantidade });
 });
 
-rotas.put("/:id", async (req, res) => {
+rotas.put("/:id", verifica, async (req, res) => {
   const { nome, valor, quantidade } = req.body;
   await consulta("UPDATE produtos SET nome=?, valor=?, quantidade=? WHERE id=?", [nome, valor, quantidade, req.params.id]);
   res.json({ id: req.params.id, nome, valor, quantidade });
 });
 
-rotas.delete("/:id", async (req, res) => {
+rotas.delete("/:id", verifica, async (req, res) => {
   await consulta("DELETE FROM produtos WHERE id=?", req.params.id);
-  res.sendStatus(204);
+  res.json({ msg: "Deletado com sucesso" });
 });
 
 export default rotas;

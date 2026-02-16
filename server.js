@@ -1,7 +1,7 @@
-import app from './src/app.js'
+import app from "./src/app.js";
 
-const PORT = 3000
+const PORT = 3000;
 
 app.listen(PORT, () => {
-        console.log(`Servidor rodando no http://localhost:${PORT}`)
-})
+  console.log(`Servidor rodando no http://localhost:${PORT}`);
+});
